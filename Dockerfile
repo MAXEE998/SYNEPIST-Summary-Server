@@ -4,9 +4,14 @@ RUN apt-get -y update
 
 RUN apt-get install -y nginx \
     && apt-get -y install build-essential
+    
+RUN apt-get -y install gcc-4.7 
+
+RUN rm /usr/bin/gcc
+RUN ln -s /usr/bin/gcc-4.7 /usr/bin/gcc
 
 RUN pip install flask \
-                pyopenssl \
+                openssl \
                 flask-cors \
                 uwsgi
 
