@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,4 +9,4 @@ def summarize():
     content = request.form.get("email_content")
     print("Receive Content: {}".format(content))
     summary = "Greetings from the server!"
-    return summary
+    return jsonify(summary=summary)
