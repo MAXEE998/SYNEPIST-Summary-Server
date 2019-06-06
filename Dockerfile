@@ -11,7 +11,6 @@ RUN rm /usr/bin/gcc
 RUN ln -s /usr/bin/gcc-4.7 /usr/bin/gcc
 
 RUN pip install flask \
-                openssl \
                 flask-cors \
                 uwsgi
 
@@ -21,8 +20,13 @@ ENV LANG=C.UTF-8
 RUN git clone https://github.com/MAXEE998/SYNEPIST-Summary-Server
 
 COPY nginx.conf /etc/nginx
+COPY SYNEPIST.ini /workspace/SYNEPIST-Summary-Server/
 
 WORKDIR /workspace/SYNEPIST-Summary-Server
 RUN chmod +x ./start.sh
+
+RUN useradd -ms /bin/bash www
+
+
 EXPOSE 80
 CMD ["./start.sh"]
