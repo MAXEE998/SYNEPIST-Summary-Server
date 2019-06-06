@@ -1,8 +1,13 @@
 FROM pytorch/pytorch:latest
 
 RUN pip install flask \
-                pyopenssl
+                pyopenssl \
+                flask-cors
 
-EXPOSE 8080
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
-CMD ["bash"]
+RUN git clone https://github.com/MAXEE998/SYNEPIST-Summary-Server
+WORKDIR /workspace/SYNEPIST-Summary-Server
+
+EXPOSE 5000
